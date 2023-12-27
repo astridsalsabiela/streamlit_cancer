@@ -1,10 +1,22 @@
 import streamlit as st
 import pandas as pd
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+import numpy as np
+import matplotlib.pyplot as plt
+import sklearn.metrics as metrics
+import seaborn as sns
 import pickle
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler,LabelEncoder
+from sklearn import preprocessing
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score,classification_report
+from sklearn.metrics import confusion_matrix,ConfusionMatrixDisplay
+from sklearn.neighbors import KNeighborsClassifier
+
+import pickle
+import warnings
+warnings.filterwarnings("ignore")
 
 # Load the Breast Cancer Wisconsin dataset (replace with the actual path to your dataset)
 df = pd.read_csv('data.csv')

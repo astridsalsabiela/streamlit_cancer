@@ -339,5 +339,5 @@ print(accuracy)
 
 ## Deployment
 Model yang telah dilatih akan dideploy dalam sebuah aplikasi atau platform yang memungkinkan pengguna dapat menghasilkan model yang dapat memberikan nilai tambah dalam mendukung deteksi dini kanker payudara.
-[My Prediction App]()
-![](streamlit.png)
+[My Prediction App](https://appcancer-dmrbc9hbdzqglubmxoubnx.streamlit.app/)
+![https://appcancer-dmrbc9hbdzqglubmxoubnx.streamlit.app/](streamlit.png)

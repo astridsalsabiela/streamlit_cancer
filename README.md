@@ -296,6 +296,7 @@ print(classification_report(y_train,pred1))
 Testing
 [98  7]
  [15 51]
+ 
               precision    recall  f1-score   support
 
            0       0.87      0.93      0.90       105
@@ -309,6 +310,7 @@ weighted avg       0.87      0.87      0.87       171
 training
 [244   8]
  [ 22 124]
+ 
               precision    recall  f1-score   support
 
            0       0.92      0.97      0.94       252
@@ -340,4 +342,4 @@ print(accuracy)
 ## Deployment
 Model yang telah dilatih akan dideploy dalam sebuah aplikasi atau platform yang memungkinkan pengguna dapat menghasilkan model yang dapat memberikan nilai tambah dalam mendukung deteksi dini kanker payudara.
 [My Prediction App](https://appcancer-dmrbc9hbdzqglubmxoubnx.streamlit.app/)
-![[https://appcancer-dmrbc9hbdzqglubmxoubnx.streamlit.app/](streamlit.png)
+![[https://appcancer-dmrbc9hbdzqglubmxoubnx.streamlit.app/](streamlitt.png)

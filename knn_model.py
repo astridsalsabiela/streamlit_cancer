@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import matplotlib as plt
+import matplotlib.pyplot as plt
 import sklearn.metrics as metrics
 import seaborn as sns
 import pickle
@@ -33,11 +33,14 @@ y = df['diagnosis']
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
+# Pisah data menjadi train dan test set
+X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+
 # Inisialisasi model KNN
 knn_model = KNeighborsClassifier(n_neighbors=3)
 
 # Latih model
-knn_model.fit(X_scaled, y)
+knn_model.fit(X_train, y_train)
 
 # Simpan model KNN menggunakan pickle
 with open('knn_model.pickle', 'wb') as model_file:
@@ -65,16 +68,18 @@ concave_points_mean = st.sidebar.slider('Concave Points Mean', float(X['concave 
 symmetry_mean = st.sidebar.slider('Symmetry Mean', float(X['symmetry_mean'].min()), float(X['symmetry_mean'].max()), float(X['symmetry_mean'].mean()))
 fractal_dimension_mean = st.sidebar.slider('Fractal Dimension Mean', float(X['fractal_dimension_mean'].min()), float(X['fractal_dimension_mean'].max()), float(X['fractal_dimension_mean'].mean()))
 
-# Preprocessing data pengguna
-user_data = [[radius_mean, texture_mean, perimeter_mean, area_mean, smoothness_mean, compactness_mean, concavity_mean, concave_points_mean, symmetry_mean, fractal_dimension_mean]]
-user_data_scaled = scaler.transform(user_data)
+# Prediction
+if st.button('Make Prediction'):
+    # User input for prediction
+    user_input = [radius_mean, texture_mean, perimeter_mean, area_mean, smoothness_mean, compactness_mean, concavity_mean, concave_points_mean, symmetry_mean, fractal_dimension_mean]
 
-# Prediksi dengan model KNN
-prediction = knn_model.predict(user_data_scaled)
+    # Transform user input
+    user_data = pd.DataFrame([user_input])
+    user_data_scaled = scaler.transform(user_data)
 
-# Tampilkan hasil prediksi
-st.subheader('Hasil Prediksi:')
-if prediction[0] == 0:
-    st.write('Sel tumor bersifat jinak (M)')
-else:
-    st.write('Sel tumor bersifat ganas (B)')
+    # Make prediction
+    prediction = knn_model.predict(user_data_scaled)
+
+    # Display prediction result
+    st.subheader('Prediction Result:')
+    st.write('Sel tumor bersifat jinak (M)' if prediction[0] == 1 else 'Sel tumor bersifat ganas (B)')
